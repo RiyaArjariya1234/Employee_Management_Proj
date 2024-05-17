@@ -1,28 +1,40 @@
-import React from "react";
+//import React from "react";
 //import "../NavBarComponent/Navbar.css";
 //import "./Navbar.css";
+import React, { useState } from "react";
+import AddEmployee from "../CRUDComponent/AddEmployee";
+import AdminNavbar from "../NavBarComponent/AdminNavbar";
+
 function Admin() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddEmployee = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmitForm = (formData) => {
+    console.log("Form submitted with data:", formData);
+    setIsModalOpen(false);
+  };
+  const empId = localStorage.getItem("userId");
+  const email = localStorage.getItem("email");
   return (
     <>
-      <nav>
-        <div className="container">
-          <div className="logo">Your Brand</div>
-          <ul className="nav-links">
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-          </ul>
+      <AdminNavbar onAddEmployee={handleAddEmployee} />
+      {isModalOpen && (
+        <div>
+          <span onClick={handleCloseModal}></span>
+          <AddEmployee onSubmit={handleSubmitForm} onClose={handleCloseModal} />
         </div>
-      </nav>
+      )}
+      <h1>Welcome</h1>
+      <h1>Welcome to the Home Page</h1>
+      {empId && <p>Employee ID: {empId}</p>}
+      {email && <p>Email: {email}</p>}
     </>
   );
 }

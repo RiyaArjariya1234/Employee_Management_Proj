@@ -1,5 +1,8 @@
 package com.emp_mng.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //import java.util.Collections;
 //import java.util.HashSet;
 //import java.util.Set;
@@ -128,7 +131,33 @@ public class UserService
         return savedUser;
     }
     @Transactional
-     public ResponseEntity<LoginMessage> loginUser(LoginDTO  loginDTO) {
+    public ResponseEntity<Map<String,String>> loginUser(LoginDTO  loginDTO) {
+    	//User user = userRepository.findByEmail(loginDTO.getEmail());
+    	 User user;
+    	 if (loginDTO.getRoleType() != null) {
+             
+             user = userRepository.findByEmailAndUserRolesRoleType(loginDTO.getEmail(), loginDTO.getRoleType());
+         } else {
+             
+             user = userRepository.findByEmail(loginDTO.getEmail());
+         }
+         
+         if (user != null && passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+
+        	 Map<String, String> response = new HashMap<>();
+             response.put("userId", String.valueOf(user.getUserId()));
+             response.put("email", user.getEmail());
+             //response.put("roleType", user.getRoleType());
+             return new ResponseEntity<>(response, HttpStatus.OK);
+         }
+        else {
+                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+         }
+        
+           
+           
+    } 
+    /*public ResponseEntity<LoginMessage> loginUser(LoginDTO  loginDTO) {
         User user;
         
         if (loginDTO.getRoleType() != null) {
@@ -146,7 +175,7 @@ public class UserService
           
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginMessage("Invalid email, password, or role type"));
         }
-    }
+    }*/
 
 
 

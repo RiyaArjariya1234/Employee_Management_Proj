@@ -14,22 +14,26 @@ function Login() {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/users/login",
+        "http://localhost:8181/api/users/login",
         {
           email: email,
           password: password,
           roleType: selectedRoleType,
         }
       );
-      console.log(response);
-      const { message } = response.data;
+      //console.log(response);
+      //const { message } = response.data;
       //const check = response.data;
 
       // const { rr } = response.data.roleType;
+      if (response.status === 200) {
+        const userData = response.data;
+        localStorage.setItem("userId", userData.userId);
+        localStorage.setItem("email", userData.email);
 
-      if (message === "Email not exists") {
-        alert("Email not exists");
-      } else if (message === "Login successful") {
+        // if (message === "Email not exists") {
+        // alert("Email not exists");
+        //} else if (message === "Login successful") {
         // alert(roleType);
         if (selectedRoleType === "ADMIN") {
           navigate("/admin");
@@ -51,7 +55,7 @@ function Login() {
 
   return (
     <div>
-      <div className="container">
+      <div className="container1">
         <div className="row">
           <h2>Login</h2>
           <hr />

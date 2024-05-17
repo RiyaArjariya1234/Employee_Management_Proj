@@ -1,5 +1,7 @@
 package com.emp_mng.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.emp_mng.dto.LoginDTO;
 import com.emp_mng.dto.UserDTO;
+import com.emp_mng.entities.User;
 //import com.emp_mng.entities.User;
 //import com.emp_mng.entities.RoleType;
 import com.emp_mng.response.LoginMessage;
@@ -27,23 +30,21 @@ public class UserController {
 	@Autowired
     private UserService userService;
 	
+	@PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody UserDTO  userDTO) {
+	 if (userService.findByEmail(userDTO.getEmail()) != null) {
+         return new ResponseEntity<>("User with this email already exists", HttpStatus.BAD_REQUEST);
+     }
+	 userService.saveUserWithRole(userDTO);
+     return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
+	}
 	
-	 @PostMapping("/register")
-	    public ResponseEntity<String> registerUser(@RequestBody UserDTO  userDTO) {
-		 if (userService.findByEmail(userDTO.getEmail()) != null) {
-             return new ResponseEntity<>("User with this email already exists", HttpStatus.BAD_REQUEST);
-         }
-		 userService.saveUserWithRole(userDTO);
-	     return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
-	       // User savedUser = userService.saveUserWithRole(userDTO);
-	      //  return ResponseEntity.ok(savedUser);
-	 }
-	 
-	 @PostMapping("/login")
-	    public ResponseEntity<LoginMessage> loginUser(@RequestBody LoginDTO loginDTO) {
+    @PostMapping("/login")
+	    public ResponseEntity<Map<String, String>> loginUser(@RequestBody LoginDTO loginDTO) {
 	        return userService.loginUser(loginDTO);
 	    }
-
+     
+	
 	
 
 	 

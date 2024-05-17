@@ -1,0 +1,63 @@
+.form-container {
+  background-color: #fefefe; /* White background */
+  margin: 3% auto; /* Center modal on screen */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%; /* Set the width of the modal */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add a shadow effect */
+}
+ 
+  /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);*/
+  /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);*/
+
+
+ 
+/* Form input fields */
+.form-container input[type=text],
+.form-container input[type=email],
+.form-container input[type=password]
+ {
+  width: calc(100% - 24px); /* Adjusted width */
+  padding: 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Submit button */
+.form-container button[type=submit],
+.form-container button[type=button] {
+  width: calc(50% - 12px); /* Adjusted width */
+  padding: 10px;
+  margin-top: 8px;
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+/* Submit button - Green */
+.form-container button[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Cancel button - Red */
+.form-container button[type=button] {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Hover effect */
+.form-container button:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+.form-container button[type=button]:hover {
+  background-color: #da190b; /* Darker red */
+}
+
