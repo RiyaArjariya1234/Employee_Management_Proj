@@ -28,7 +28,7 @@ public class Admin {
 			this.user = user;
 		}
 
-	    // Getters and setters
+	    
 	    
 	}
 

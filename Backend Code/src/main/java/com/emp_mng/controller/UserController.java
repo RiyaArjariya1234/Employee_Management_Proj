@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.emp_mng.dto.LoginDTO;
 import com.emp_mng.dto.UserDTO;
-import com.emp_mng.entities.User;
+//import com.emp_mng.entities.User;
 //import com.emp_mng.entities.User;
 //import com.emp_mng.entities.RoleType;
-import com.emp_mng.response.LoginMessage;
+//import com.emp_mng.response.LoginMessage;
 //import com.emp_mng.repository.UserRepository;
 import com.emp_mng.service.UserService;
 

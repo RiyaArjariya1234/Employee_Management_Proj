@@ -12,9 +12,17 @@ import javax.persistence.OneToOne;
 public class Manager {
 	   @Id
 	   @GeneratedValue(strategy = GenerationType.IDENTITY)
-	   private Integer MngId;
+	   private int managerId;
 
-	    @OneToOne(cascade = CascadeType.ALL)
+	    public int getManagerId() {
+		return managerId;
+	 }
+
+	 public void setManagerId(int managerId) {
+		this.managerId = managerId;
+	 }
+
+		@OneToOne(cascade = CascadeType.ALL)
 	   // @MapsId
 	   // @JoinColumn(name="Mng_id")
 	    @JoinColumn(name="fk_user_id")
@@ -28,7 +36,7 @@ public class Manager {
 			this.user = user;
 		}
 
-	    // Getters and setters
+	  
 	    
 	}
 

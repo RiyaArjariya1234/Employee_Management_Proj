@@ -30,27 +30,7 @@ import com.emp_mng.repository.EmployeeRepository;
 import com.emp_mng.repository.ManagerRepository;
 import com.emp_mng.repository.RoleRepository;
 import com.emp_mng.repository.UserRepository;
-import com.emp_mng.response.LoginMessage;
 
-//import org.springframework.stereotype.Service;
-
-//import com.emp_mng.dto.LoginDTO;
-//import com.emp_mng.dto.UserDTO;
-//import com.emp_mng.response.LoginMessage;
-
-/*import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import com.emp_mng.entities.Admin;
-import com.emp_mng.entities.Employee;
-import com.emp_mng.entities.Manager;
-import com.emp_mng.entities.User;
-import com.emp_mng.entities.UserType;
-import com.emp_mng.repository.AdminRepository;
-import com.emp_mng.repository.EmployeeRepository;
-import com.emp_mng.repository.ManagerRepository;
-import com.emp_mng.repository.UserRepository;*/
 
 @Service
 public class UserService
@@ -208,51 +188,4 @@ public class UserService
 	LoginMessage loginUser(LoginDTO loginDTO);
 }*/
 
-/*@Service
-public class UserService {
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private AdminRepository adminRepository;
-
-    @Autowired
-    private ManagerRepository managerRepository;
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
-    
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }*/
-   /* public User findByEmailAndUserType(String email, UserType userType) {
-        return userRepository.findByEmailAndUserType(email, userType);
-    }*/
-
-   /* public User createUser(User user) {
-        switch (user.getUserType()) {
-            case ADMIN:
-                Admin admin = new Admin();
-                admin.setUser(user);
-                adminRepository.save(admin);
-                break;
-            case MANAGER:
-                Manager manager = new Manager();
-                manager.setUser(user);
-                managerRepository.save(manager);
-                break;
-            case EMPLOYEE:
-                Employee employee = new Employee();
-                employee.setUser(user);
-                employeeRepository.save(employee);
-                break;
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
-}*/
 

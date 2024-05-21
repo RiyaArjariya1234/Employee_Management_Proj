@@ -6,13 +6,12 @@ const AddEmployee = ({ onSubmit, onClose }) => {
   const [email, setEmail] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [password, setPassword] = useState("");
-  const [roleType, setRoleType] = useState(""); // No default role type selected
+  const [roleType, setRoleType] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Ensure a role type is selected
     if (!roleType) {
       alert("Please select a role type");
       return;
@@ -29,7 +28,7 @@ const AddEmployee = ({ onSubmit, onClose }) => {
 
     try {
       // Perform POST request with form data
-      const response = await fetch("http://localhost:8080/api/users/register", {
+      const response = await fetch("http://localhost:8182/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

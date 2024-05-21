@@ -13,7 +13,7 @@ const AddSkills = ({ onSubmit, onClose }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8181/api/skill/addSkill",
+        "http://localhost:8182/api/skill/addSkill",
         skillDTO
       );
       console.log("Skill added successfully:", response.data);

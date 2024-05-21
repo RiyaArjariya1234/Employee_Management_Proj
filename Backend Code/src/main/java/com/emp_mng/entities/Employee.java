@@ -29,7 +29,7 @@ public class Employee {
 			this.user = user;
 		}
 
-	    // Getters and setters
+	   
 	    
 	}
 
