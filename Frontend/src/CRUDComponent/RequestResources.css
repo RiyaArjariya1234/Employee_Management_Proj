@@ -1,0 +1,106 @@
+.Rcontainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.Rsearch-form {
+  margin-bottom: 20px;
+}
+
+.Rsearch-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Rsearch-input {
+  padding: 13px;
+  font-size: 16px;
+  width: 180px;
+  /*margin-right: 10px;*/
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.Rsearch-button {
+  padding: 10px 15px;
+  font-size: 20px;
+  border: none;
+ /* border-radius: 4px;*/
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  width:45px;
+}
+
+.Rsearch-button:hover {
+  background-color: #0056b3;
+}
+
+.Remployee-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.Remployee-table th, .Remployee-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.Remployee-table th {
+  background-color: #f2f2f2;
+}
+
+.Rerror-message {
+  color: red;
+  font-weight: bold;
+}
+.Rselect-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.Rselect-container select {
+  width: 80%;
+  padding: 10px;
+  margin-top:20px;
+  margin-bottom:5px;
+  border-radius: 5px;
+   
+}
+
+
+.Rselect-container select::after {
+  content: '\25BC'; 
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; 
+}
+
+
+.Rsubmit-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color:#0095B7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Rsubmit-button:hover {
+  background-color: #0056b3; 
+}
+.Rno-project-message {
+  color: red; 
+  font-style: italic; 
+  margin: 0; 
+}
+
