@@ -1,12 +1,20 @@
 package com.emp_mng.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.emp_mng.repository.ProjectRepository;
 import com.emp_mng.repository.RequestResourceRepository;
+import com.emp_mng.repository.UserRepository;
+import com.emp_mng.entities.Project;
 import com.emp_mng.entities.RequestResources;
+import com.emp_mng.entities.User;
 import com.emp_mng.dto.RequestResourcesDTO;
 import com.emp_mng.exceptions.AlreadyAssignedException;
 import com.emp_mng.exceptions.PendingRequestException;
@@ -16,6 +24,12 @@ public class RequestResourceService {
 	
 	@Autowired
     private RequestResourceRepository requestResourceRepository;
+	
+	@Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ProjectRepository projectRepository;
 	
 	public RequestResources createRequest(RequestResourcesDTO requestResourcesDTO)
 	{
@@ -38,6 +52,80 @@ public class RequestResourceService {
 		request.setEmployeeId(requestResourcesDTO.getEmployeeId());
 		request.setProjectId(requestResourcesDTO.getProjectId());
 		return requestResourceRepository.save(request);
+		
+	}
+	
+	public List<Map<String,Object>> getPendingRequestWithNames()
+	{
+		List<RequestResources> pendingRequest=requestResourceRepository.findByStatus("Pending");
+		List<Map<String,Object>> result=new ArrayList<>();
+		for(RequestResources request:pendingRequest)
+		{
+			Map<String,Object> map=new HashMap<>();
+		    User employee = userRepository.findById(request.getEmployeeId()).orElse(null);
+	        User manager = userRepository.findById(request.getManagerId()).orElse(null);
+	        Project project = projectRepository.findById(request.getProjectId()).orElse(null);
+	        if (employee != null) {
+                map.put("employeeName", employee.getName());
+            }
+            if (manager != null) {
+                map.put("managerName", manager.getName());
+            }
+            if (project != null) {
+                map.put("projectName", project.getName());
+            }
+            map.put("requestId", request.getRequestId());
+            result.add(map);
+		}
+		return result;
+		
+	}
+	
+	public RequestResources updateRequestStatus(int id, String status) {
+        Optional<RequestResources> optionalRequest = requestResourceRepository.findById(id);
+        if (optionalRequest.isPresent()) {
+            RequestResources request = optionalRequest.get();
+            request.setStatus(status);
+            return requestResourceRepository.save(request);
+        } else {
+            throw new RuntimeException("Request not found with id " + id);
+        }
+    }
+
+    public RequestResources approveRequest(int id) {
+        return updateRequestStatus(id, "approved");
+    }
+
+    public void rejectRequest(int id) {
+        if (requestResourceRepository.existsById(id)) {
+        	requestResourceRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Request not found with id " + id);
+        }
+    }
+    public List<Map<String,Object>> getApprovedRequestWithNames()
+	{
+		List<RequestResources> approvedRequest=requestResourceRepository.findByStatus("approved");
+		List<Map<String,Object>> result=new ArrayList<>();
+		for(RequestResources request:approvedRequest)
+		{
+			Map<String,Object> map=new HashMap<>();
+		    User employee = userRepository.findById(request.getEmployeeId()).orElse(null);
+	        User manager = userRepository.findById(request.getManagerId()).orElse(null);
+	        Project project = projectRepository.findById(request.getProjectId()).orElse(null);
+	        if (employee != null) {
+                map.put("employeeName", employee.getName());
+            }
+            if (manager != null) {
+                map.put("managerName", manager.getName());
+            }
+            if (project != null) {
+                map.put("projectName", project.getName());
+            }
+            map.put("requestId", request.getRequestId());
+            result.add(map);
+		}
+		return result;
 		
 	}
 

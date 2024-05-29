@@ -15,7 +15,7 @@ import com.emp_mng.exceptions.UserNotManagerException;
 import com.emp_mng.repository.AssignProjectRepository;
 import com.emp_mng.repository.ProjectRepository;
 import com.emp_mng.repository.UserRepository;
-
+import java.util.List;
 
 @Service
 public class AssignProjectService {
@@ -49,6 +49,12 @@ public class AssignProjectService {
         assignedProject.setUser(user);
         
         return assignProjectRepository.save(assignedProject);
+    }
+    @Transactional
+    public List<AssignProject> getAllAssignments()
+    {
+	
+	   return assignProjectRepository.findAll();
     }
    
 }

@@ -2,11 +2,15 @@ package com.emp_mng.dto;
 public class AssignProjectDTO {
 	
 	 private int projectId;
-	 private int managerId;
-	 public AssignProjectDTO(int projectId, int managerId) {
+	 private int userId;
+	 
+	 public AssignProjectDTO() {
+		super();
+	}
+	public AssignProjectDTO(int projectId, int userId) {
 		super();
 		this.projectId = projectId;
-		this.managerId = managerId;
+		this.userId = userId;
 	}
 	public int getProjectId() {
 		return projectId;
@@ -14,11 +18,11 @@ public class AssignProjectDTO {
 	public void setProjectId(int projectId) {
 		this.projectId = projectId;
 	}
-	public int getManagerId() {
-		return managerId;
+	public int getUserId() {
+		return userId;
 	}
-	public void setManagerId(int managerId) {
-		this.managerId = managerId;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	 
 	 

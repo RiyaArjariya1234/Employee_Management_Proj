@@ -4,6 +4,10 @@ import AdminNavbar from "../NavBarComponent/AdminNavbar";
 import AddEmployee from "../CRUDComponent/AddEmployee";
 import AddProject from "../CRUDComponent/AddProject";
 import AssignProjectToManager from "../CRUDComponent/AssignProjectToManager";
+import { Route, Routes } from "react-router-dom";
+import RequestResourceView from "../CRUDComponent/RequestResourceView";
+import RequestApproved from "../CRUDComponent/RequestApproved";
+
 const Admin = () => {
   const [showAddEmployeeForm, setShowAddEmployeeForm] = useState(false);
   const [showAddProjectForm, setShowAddProjectForm] = useState(false);
@@ -65,6 +69,13 @@ const Admin = () => {
             </div>
           </div>
         )}
+        <Routes>
+          <Route
+            path="/RequestResourceView"
+            element={<RequestResourceView />}
+          />
+          <Route path="/RequestApproved" element={<RequestApproved />} />
+        </Routes>
       </main>
     </div>
   );

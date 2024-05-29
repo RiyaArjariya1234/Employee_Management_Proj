@@ -1,7 +1,7 @@
 package com.emp_mng.repository;
 
 import java.util.Optional;
-
+import java.util.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,5 +13,7 @@ public interface RequestResourceRepository extends JpaRepository<RequestResource
 
 	  @Query("SELECT r FROM RequestResources r WHERE r.employeeId = :employeeId")
 	    Optional<RequestResources> findByEmployeeId(int employeeId);
+	  
+	  List<RequestResources> findByStatus(String status);
 	
 }

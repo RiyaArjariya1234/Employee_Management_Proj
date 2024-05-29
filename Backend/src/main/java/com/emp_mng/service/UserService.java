@@ -1,6 +1,7 @@
 package com.emp_mng.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //import java.util.Collections;
@@ -118,5 +119,22 @@ public class UserService
            
            
     } 
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
     
+    public User updateUser(int id, User userDetails) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setName(userDetails.getName());
+        user.setEmail(userDetails.getEmail());
+        user.setPassword(userDetails.getPassword());
+        user.setMobileNo(userDetails.getMobileNo());
+
+        return userRepository.save(user);
+    }
+    public void deleteUser(int id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        userRepository.delete(user);
+    }
 }

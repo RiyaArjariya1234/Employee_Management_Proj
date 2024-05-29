@@ -4,6 +4,7 @@
 import "./Navbar.css";
 // AdminNavbar.js
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AdminNavbar = ({ onAddEmployee, onAddProject, onAssignProject }) => {
   return (
@@ -26,6 +27,12 @@ const AdminNavbar = ({ onAddEmployee, onAddProject, onAssignProject }) => {
               <a href="#" onClick={onAssignProject}>
                 Assign Project To Manager
               </a>
+            </li>
+            <li>
+              <Link to="/admin/RequestResourceView"> View Requests</Link>
+            </li>
+            <li>
+              <Link to="/admin/RequestApproved"> View Approved Requests</Link>
             </li>
           </ul>
         </div>
