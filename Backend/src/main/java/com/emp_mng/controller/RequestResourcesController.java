@@ -61,4 +61,15 @@ public class RequestResourcesController {
     public List<Map<String, Object>> getApprovedRequestsWithNames() {
         return requestResourcesService.getApprovedRequestWithNames();
     }
+    @GetMapping("/approved/{employeeId}")
+    public ResponseEntity<List<Map<String, Object>>> getApprovedRequests(@PathVariable int employeeId) {
+        List<Map<String, Object>> requests = requestResourcesService.getApprovedRequestsByEmployeeId(employeeId);
+        return ResponseEntity.ok(requests);
+    }
+    @GetMapping("/approved/managerId/{managerId}")
+    public ResponseEntity<List<Map<String, Object>>> getApprovedRequests1(@PathVariable int managerId) {
+        List<Map<String, Object>> requests = requestResourcesService.getApprovedRequestsByManagerId(managerId);
+        return ResponseEntity.ok(requests);
+    }
+  
 }

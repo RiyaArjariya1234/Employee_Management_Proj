@@ -28,6 +28,12 @@ public class AssignProjectService {
 
     @Autowired
     private ProjectRepository projectRepository;
+    
+    
+   
+   /* public AssignProjectService(AssignProjectRepository assignProjectRepository) {
+        this.assignProjectRepository = assignProjectRepository;
+    }*/
 
     @Transactional
     public AssignProject assignProjectToManager(Integer projectId, Integer userId) {

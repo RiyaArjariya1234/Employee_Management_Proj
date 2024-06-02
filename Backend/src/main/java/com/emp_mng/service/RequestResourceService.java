@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.emp_mng.repository.ProjectRepository;
 import com.emp_mng.repository.RequestResourceRepository;
+//import com.emp_mng.repository.RequestResourceRepositoryTest;
 import com.emp_mng.repository.UserRepository;
 import com.emp_mng.entities.Project;
 import com.emp_mng.entities.RequestResources;
@@ -24,6 +25,7 @@ public class RequestResourceService {
 	
 	@Autowired
     private RequestResourceRepository requestResourceRepository;
+	
 	
 	@Autowired
     private UserRepository userRepository;
@@ -128,6 +130,62 @@ public class RequestResourceService {
 		return result;
 		
 	}
+    
+    public List<Map<String, Object>> getApprovedRequestsByEmployeeId(int employeeId) {
+        List<RequestResources> requests = requestResourceRepository.findApprovedRequestsByEmployeeId(employeeId);
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        for (RequestResources request : requests) {
+                   
+        	Map<String,Object> map=new HashMap<>();
+		    User employee = userRepository.findById(request.getEmployeeId()).orElse(null);
+	        User manager = userRepository.findById(request.getManagerId()).orElse(null);
+	        Project project = projectRepository.findById(request.getProjectId()).orElse(null);
+	        if (employee != null) {
+                map.put("employeeName", employee.getName());
+            }
+            if (manager != null) {
+                map.put("managerName", manager.getName());
+            }
+            if (project != null) {
+                map.put("projectName", project.getName());
+            }
+            map.put("requestId", request.getRequestId());
+            result.add(map);
+	
+        
+        }
+
+        return result;
+    }
+    public List<Map<String, Object>> getApprovedRequestsByManagerId(int managerId) {
+        List<RequestResources> requests = requestResourceRepository.findApprovedRequestsByManagerId(managerId);
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        for (RequestResources request : requests) {
+                   
+        	Map<String,Object> map=new HashMap<>();
+		    User employee = userRepository.findById(request.getEmployeeId()).orElse(null);
+	        User manager = userRepository.findById(request.getManagerId()).orElse(null);
+	        Project project = projectRepository.findById(request.getProjectId()).orElse(null);
+	        if (employee != null) {
+                map.put("employeeName", employee.getName());
+            }
+            if (manager != null) {
+                map.put("managerName", manager.getName());
+            }
+            if (project != null) {
+                map.put("projectName", project.getName());
+            }
+            map.put("requestId", request.getRequestId());
+            result.add(map);
+	
+        
+        }
+
+        return result;
+    }
+    
 
 
 }

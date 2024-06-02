@@ -3,6 +3,7 @@ package com.emp_mng.dto;
 import com.emp_mng.entities.RoleType;
 
 public class UserDTO {
+	private int userId;
     private String username;
     private String email;
     private String phoneNo;
@@ -19,6 +20,14 @@ public class UserDTO {
 		this.phoneNo = phoneNo;
 		this.password = password;
 		this.roleType = roleType;
+	}
+	public int getUserId()
+	{
+		return userId;
+	}
+	public void setUserId(int userId)
+	{
+		this.userId=userId;
 	}
 	public String getUsername() {
 		return username;

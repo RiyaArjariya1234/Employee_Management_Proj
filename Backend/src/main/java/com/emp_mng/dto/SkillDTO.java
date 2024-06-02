@@ -5,8 +5,12 @@ public class SkillDTO {
 	 private String skillName;
 	 private int userId;
 	 
-	public SkillDTO(String skillName, int userId) {
+	 
+	public SkillDTO() {
 		super();
+	}
+	public SkillDTO(String skillName, int userId) {
+	
 		this.skillName = skillName;
 		this.userId = userId;
 	}

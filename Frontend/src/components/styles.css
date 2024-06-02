@@ -1,10 +1,14 @@
+
 .container1 {
   max-width: 350px;
   margin: 50px auto;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background:linear-gradient(to right,#0066ff,#1cad23d0);
+  /*background-color: #ffffff;*/
+ /* background-color:rgba(255,255,255,0.1);*/
+  
 }
 
 h2 {
@@ -24,7 +28,7 @@ label {
   
 }
 
-input[type="email"],
+/*input[type="email"],
 input[type="password"],
 select {
   width: 100%;
@@ -32,12 +36,22 @@ select {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-}
-
-button {
+}*/
+.custom-input,
+.custom-select {
   width: 100%;
   padding: 12px;
-  background-color: #4caf50; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+ /* background-color: rgba(11, 91, 211, 0.74);*/
+ /*  background-color:  #27c92ff8;*/
+ background:linear-gradient(to right,#0b4fb6c9,#1cad23d0);
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -45,11 +59,14 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #27c92ff8; 
+.btn:hover {
+  background-color: #1cad23d0; 
+  background:linear-gradient(to right,#0066fff5,hsla(123, 72%, 39%, 0.945));
 }
 .alert-success {
-  color: green; 
+  background:linear-gradient(to right,#0b4fb6c9,#1cad23d0);
+  color: #fff;
+ /* color: green; */
   font-style: italic; 
   margin: 0; 
 }

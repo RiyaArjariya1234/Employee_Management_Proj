@@ -21,7 +21,6 @@ const AddSkills = ({ onSubmit, onClose }) => {
       console.log("Skill added successfully:", response.data);
       setSuccessMessage("Added skill successfully!");
       setErrorMessage("");
-      // console.log("Success:", result);
 
       onSubmit();
 
@@ -29,12 +28,9 @@ const AddSkills = ({ onSubmit, onClose }) => {
         onClose();
         setSuccessMessage("");
       }, 2000);
-
-      // Handle success (e.g., show a message or redirect)
     } catch (error) {
       console.error("Error adding skill:", error);
       setErrorMessage("Error adding skills");
-      // Handle error (e.g., show an error message)
     }
   };
 

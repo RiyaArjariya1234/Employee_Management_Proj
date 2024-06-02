@@ -8,13 +8,11 @@ const AssignProjectToManager = ({ onSubmit, onClose }) => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    // Fetch projects
     fetch("http://localhost:8182/api/project")
       .then((response) => response.json())
       .then((data) => setProjects(data))
       .catch((error) => console.error("Error fetching projects:", error));
 
-    // Fetch managers
     fetch("http://localhost:8182/api/managers")
       .then((response) => response.json())
       .then((data) => setManagers(data))

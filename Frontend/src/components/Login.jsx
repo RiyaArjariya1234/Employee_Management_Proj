@@ -30,6 +30,7 @@ function Login() {
         const userData = response.data;
         localStorage.setItem("userId", userData.userId);
         localStorage.setItem("email", userData.email);
+        localStorage.setItem("roleType", selectedRoleType);
 
         setSuccessMessage("Login successful!");
 
@@ -58,72 +59,76 @@ function Login() {
   }
 
   return (
-    <div>
-      <div className="container1">
-        <div className="row">
-          <h2>Login</h2>
-          <hr />
-          <br />
-        </div>
+    <div className="back-color">
+      <div>
+        <div className="container1">
+          <div className="row">
+            <h2>Login</h2>
+            <hr />
+            <br />
+          </div>
 
-        <div className="row">
-          <div className="col-sm-6">
-            <form onSubmit={login}>
-              <div className="form-group">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Enter Email"
-                  value={email}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                  }}
-                  required
-                />
-              </div>
+          <div className="row">
+            <div className="col-sm-6">
+              <form onSubmit={login}>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    className="custom-input"
+                    placeholder="Enter Email"
+                    value={email}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                    }}
+                    required
+                  />
+                </div>
 
-              <div className="form-group">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter Password"
-                  value={password}
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                  }}
-                  required
-                />
-              </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    className="custom-input"
+                    placeholder="Enter Password"
+                    value={password}
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                    }}
+                    required
+                  />
+                </div>
 
-              <div className="form-group">
-                <select
-                  className="form-control"
-                  value={selectedRoleType}
-                  onChange={(event) => setSelectedRoleType(event.target.value)}
-                  required
-                >
-                  <option value="">Select Role Type</option>
-                  <option value="ADMIN">Admin</option>
-                  <option value="MANAGER">Manager</option>
-                  <option value="EMPLOYEE">Employee</option>
-                </select>
-              </div>
+                <div className="form-group">
+                  <select
+                    className="custom-input"
+                    value={selectedRoleType}
+                    onChange={(event) =>
+                      setSelectedRoleType(event.target.value)
+                    }
+                    required
+                  >
+                    <option value="">Select Role Type</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="MANAGER">Manager</option>
+                    <option value="EMPLOYEE">Employee</option>
+                  </select>
+                </div>
 
-              <button type="submit" className="btn btn-primary">
-                Login
-              </button>
-            </form>
+                <button type="submit" className="btn">
+                  Login
+                </button>
+              </form>
 
-            {successMessage && (
-              <div className="alert alert-success" role="alert">
-                {successMessage}
-              </div>
-            )}
-            {errorMessage && (
-              <div className="danger" role="alert">
-                {errorMessage}
-              </div>
-            )}
+              {successMessage && (
+                <div className="alert alert-success" role="alert">
+                  {successMessage}
+                </div>
+              )}
+              {errorMessage && (
+                <div className="danger" role="alert">
+                  {errorMessage}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

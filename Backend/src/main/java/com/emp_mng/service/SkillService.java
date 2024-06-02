@@ -23,6 +23,12 @@ public class SkillService {
     private SkillRepository skillRepository;
 	@Autowired
     private UserRepository userRepository;
+	
+	
+	public SkillService(SkillRepository skillRepository) {
+        this.skillRepository = skillRepository;
+    }
+
 
 	 @Transactional
 	public Skill saveSkill(Skill skill) {

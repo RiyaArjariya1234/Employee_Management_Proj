@@ -3,6 +3,7 @@ package com.emp_mng.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 //import java.util.Collections;
 //import java.util.HashSet;
@@ -70,31 +71,12 @@ public class UserService
             employeeRole.setRoleType(RoleType.EMPLOYEE);
             roleRepository.save(employeeRole);
         }
-       /* switch (userDTO.getRoleType()) {
-        case ADMIN:
-            Admin admin = new Admin();
-            admin.setUser(user);
-            adminRepo.save(admin);
-            break;
-        case MANAGER:
-            Manager manager = new Manager();
-            manager.setUser(user);
-            managerRepo.save(manager);
-            Employee employe = new Employee();
-            employe.setUser(user);
-            employeeRepo.save(employe);
-            break;
-        case EMPLOYEE:
-            Employee employee = new Employee();
-            employee.setUser(user);
-            employeeRepo.save(employee);
-            break;
-        }*/
+     
         return savedUser;
     }
     @Transactional
     public ResponseEntity<Map<String,String>> loginUser(LoginDTO  loginDTO) {
-    	//User user = userRepository.findByEmail(loginDTO.getEmail());
+    	
     	 User user;
     	 if (loginDTO.getRoleType() != null) {
              
@@ -109,7 +91,7 @@ public class UserService
         	 Map<String, String> response = new HashMap<>();
              response.put("userId", String.valueOf(user.getUserId()));
              response.put("email", user.getEmail());
-             //response.put("roleType", user.getRoleType());
+           
              return new ResponseEntity<>(response, HttpStatus.OK);
          }
         else {
@@ -136,5 +118,26 @@ public class UserService
     public void deleteUser(int id) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         userRepository.delete(user);
+    }
+    public List<UserDTO> getAllUsersWithRoles() {
+        List<User> users = userRepository.findAll();
+        
+        return users.stream().map(user -> {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserId(user.getUserId());
+            userDTO.setUsername(user.getName());
+            userDTO.setEmail(user.getEmail());
+            userDTO.setPhoneNo(user.getMobileNo());
+            userDTO.setPassword(user.getPassword());
+            
+            // Determine the role
+            if (user.getUserRoles().stream().anyMatch(role -> role.getRoleType() == RoleType.MANAGER)) {
+                userDTO.setRoleType(RoleType.MANAGER);
+            } else {
+                userDTO.setRoleType(user.getUserRoles().iterator().next().getRoleType());
+            }
+            
+            return userDTO;
+        }).collect(Collectors.toList());
     }
 }
